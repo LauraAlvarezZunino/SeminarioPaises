@@ -11,10 +11,14 @@
     <style>
         /* Fondo general con mapamundi */
         body {
-            background: url('https://i.imgur.com/Lf98hxX.jpg') no-repeat center center fixed;
+            /*background: url('https://i.ibb.co/Fz6GjFB/global-residence-index-AX6s7z-REt-ZE-unsplash-1.jpg') no-repeat center center fixed;*/
             background-size: cover;
-            color: #ffffff;
+            color: white;
             font-family: 'Roboto', sans-serif;
+            background-attachment: fixed; /* La imagen permanece fija al hacer scroll */
+            background-position: center; /* Centra la imagen */
+
+
         }
 
         /* Sombra para que los elementos sean más legibles */
@@ -25,12 +29,16 @@
         }
 
         /* Encabezados con tipografía destacada */
-        h1, h2, h3 {
+        h1, h3 {
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
             color: #f0f0f0;
         }
-
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: black;
+        }
         /* Tarjetas de países */
         .card img {
             height: 150px;
@@ -137,20 +145,21 @@
         <section>
             <h2 class="text-center">Suscríbete a Nuestra Revista</h2>
             <form id="formSuscripcion" class="p-4 rounded">
-                <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" id="nombre" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label for="dni" class="form-label">DNI</label>
-                    <input type="text" id="dni" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" id="email" class="form-control" required>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Suscribirse</button>
-            </form>
+                <form id="formSuscripcion" class="p-4 rounded" method="POST" action="guardarSuscripcion.php">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dni" class="form-label">DNI</label>
+                        <input type="text" id="dni" name="dni" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Suscribirse</button>
+                </form>
         </section>
     </div>
 
@@ -161,6 +170,38 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        document.getElementById('formSuscripcion').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Capturar datos del formulario
+    const nombre = document.getElementById('nombre').value;
+    const dni = document.getElementById('dni').value;
+    const email = document.getElementById('email').value;
+
+    const datos = { nombre, dni, email };
+
+    // URL de tu MockAPI
+    const apiURL = 'https://6737db304eb22e24fca64f87.mockapi.io/subscripciones/subscripcion';
+
+    try {
+        const response = await fetch(apiURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(datos)
+        });
+
+        if (response.ok) {
+            alert('¡Gracias por suscribirte! Tus datos han sido guardados.');
+            document.getElementById('formSuscripcion').reset(); // Limpiar el formulario
+        } else {
+            alert('Hubo un problema al guardar tus datos.');
+        }
+    } catch (error) {
+        console.error('Error al guardar datos en MockAPI:', error);
+        alert('No se pudo completar la suscripción.');
+    }
+});
+
         const map = L.map('map').setView([0, 0], 2);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
