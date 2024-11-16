@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,27 +14,81 @@
             background-size: cover;
             color: white;
             font-family: 'Roboto', sans-serif;
-            background-attachment: fixed; /* La imagen permanece fija al hacer scroll */
-            background-position: center; /* Centra la imagen */
+            background-attachment: fixed;
+            /* La imagen permanece fija al hacer scroll */
+            background-position: center;
+            /* Centra la imagen */
 
 
         }
 
         /* Sombra para que los elementos sean más legibles */
-        header, .card, #formSuscripcion, footer {
-            background-color: rgba(31, 31, 31, 0.9); /* Fondo oscuro translúcido */
+        header,
+        .card,
+        #formSuscripcion,
+        footer {
+            background-color: rgba(31, 31, 31, 0.9);
+            /* Fondo oscuro translúcido */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
             border-radius: 10px;
         }
 
         /* Encabezados con tipografía destacada */
-        h1,h2, h3 {
+        h1,
+        h2,
+        h3 {
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
             color: #f0f0f0;
         }
 
         /* Tarjetas de países */
+        .pais-card {
+            position: relative;
+            width: 150px;
+            margin: 10px;
+            text-align: center;
+            font-size: 18px;
+            /* Tamaño de fuente ajustado */
+        }
+
+        .flag-image {
+            width: 100%;
+
+            .pais-card:hover {
+                transform: scale(1.05);
+                /* Aumenta ligeramente el tamaño de la tarjeta */
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+                /* Sombra más intensa */
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .country-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .country-info {
+            position: absolute;
+            top: 40px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .country-population,
+        .country-currency {
+            font-size: 0.9em;
+        }
+
+
         .card img {
             height: 150px;
             object-fit: cover;
@@ -58,8 +113,13 @@
             height: 400px;
             border: 2px solid #333333;
             border-radius: 10px;
-            width: 100%; /* Ancho completo */
+            width: 100%;
+            /* Ancho completo */
+            margin-bottom: 500x;
+            /* Ajusta este valor según sea necesario */
         }
+
+
 
         /* Lista de atracciones */
         ul {
@@ -85,76 +145,174 @@
             text-align: center;
             color: #808080;
         }
+
+        #atraccionesList {
+            display: flex;
+            /* Hacer que las tarjetas se alineen horizontalmente */
+            flex-wrap: wrap;
+            /* Permitir que se envuelvan si no caben en una fila */
+            gap: 20px;
+            /* Espaciado entre las tarjetas */
+            justify-content: center;
+            /* Centrar las tarjetas en el contenedor */
+            padding: 0;
+            /* Eliminar cualquier padding */
+            list-style: none;
+            /* Quitar puntos de lista */
+            margin: 10px 0;
+            /* Separar el bloque de otras secciones */
+        }
+
+        .card-atraccion {
+            flex: 1 1 calc(30% - 20px);
+            /* Ocupa aproximadamente 30% del ancho del contenedor, restando el gap */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Centrar contenido horizontalmente */
+            text-align: center;
+            /* Centrar texto */
+            background-color: rgba(50, 50, 50, 0.8);
+            border: 1px solid #444;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+            max-width: 300px;
+            /* Ancho máximo de cada tarjeta */
+        }
+
+        .card-atraccion img {
+            width: 100%;
+            /* Asegura que la imagen cubra el ancho de la tarjeta */
+            height: 180px;
+            /* Altura fija para uniformidad */
+            object-fit: cover;
+            /* Asegura que la imagen se ajuste sin distorsionarse */
+            border-bottom: 2px solid #444;
+            /* Línea divisoria entre imagen y texto */
+        }
+
+        .card-atraccion:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.7);
+        }
+
+        .card-atraccion .card-title {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #e0e0e0;
+        }
+
+        .card-atraccion .btn {
+            margin-top: auto;
+            /* Mantiene el botón en la parte inferior */
+            width: 80%;
+            /* Ajusta el ancho del botón */
+        }
+
+        /* Botón de las tarjetas de atracciones */
+        .card-atraccion .btn-primary {
+            background-color: #333333;
+            /* Igual que los botones de países */
+            border: none;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .card-atraccion .btn-primary:hover {
+            background-color: #555555;
+            /* Efecto hover consistente */
+        }
     </style>
 </head>
+
 <body>
     <header class="py-4 text-center mb-4">
         <h1>Explora el Mundo</h1>
         <p>Haz clic en un país para descubrir sus atracciones turísticas</p>
     </header>
-
     <div class="container">
-        <div class="row g-4">
-            <!-- Cuadros de países -->
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="https://flagcdn.com/w320/es.png" class="card-img-top" alt="España">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">España</h5>
-                        <button class="btn btn-primary" onclick="mostrarMapa('ES')">Ver Mapa y Atracciones</button>
+        <div id="paises-container">
+            <div class="row g-4">
+                <!-- Cuadros de países -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://flagcdn.com/w320/es.png" class="card-img-top" alt="España">
+
+                        <div class="card-body text-center">
+
+                            <h5 class="card-title">España</h5>
+
+                            <div class="country-info">
+                                <p class="country-population"></p>
+                                <p class="country-currency"></p>
+                            </div>
+                            <button class="btn btn-primary" onclick="mostrarMapa('ES')">Ver Mapa y Atracciones</button>
+
+
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="https://flagcdn.com/w320/fr.png" class="card-img-top" alt="Francia">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Francia</h5>
-                        <button class="btn btn-primary" onclick="mostrarMapa('FR')">Ver Mapa y Atracciones</button>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://flagcdn.com/w320/fr.png" class="card-img-top" alt="Francia">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Francia</h5>
+                            <button class="btn btn-primary" onclick="mostrarMapa('FR')"
+                                aria-label="Ver mapa y atracciones turísticas de Francia">Ver Mapa y
+                                Atracciones</button>
+
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="https://flagcdn.com/w320/it.png" class="card-img-top" alt="Italia">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Italia</h5>
-                        <button class="btn btn-primary" onclick="mostrarMapa('IT')">Ver Mapa y Atracciones</button>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://flagcdn.com/w320/it.png" class="card-img-top" alt="Italia">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Italia</h5>
+                            <button class="btn btn-primary" onclick="mostrarMapa('IT')"
+                                aria-label="Ver mapa y atracciones turísticas de Italia">Ver Mapa y Atracciones</button>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <div class="my-5">
             <!-- Mapa y atracciones -->
             <div id="mapaContainer" class="d-none">
                 <h2 class="text-center">Mapa Interactivo</h2>
                 <div id="map" class="map-container mb-4"></div>
-                <h3>Atracciones Turísticas</h3>
-                <ul id="atraccionesList" class="list-unstyled"></ul>
+                <h3 class="text-center">Atracciones Turísticas</h3>
+                <div id="atraccionesList" class="row g-4"></div> <!-- Contenedor para tarjetas -->
             </div>
         </div>
-    
-        <!-- Formulario de suscripción -->
-        <section>
-            <h2 class="text-center">Suscríbete a Nuestra Revista</h2>
-            <form id="formSuscripcion" class="p-4 rounded">
-                <form id="formSuscripcion" class="p-4 rounded" method="POST" action="guardarSuscripcion.php">
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" id="nombre" name="nombre" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="dni" class="form-label">DNI</label>
-                        <input type="text" id="dni" name="dni" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" id="email" name="email" class="form-control" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Suscribirse</button>
-                </form>
-        </section>
+    </div>
+
+
+    <!-- Formulario de suscripción -->
+    <section>
+        <h2 class="text-center">Suscríbete a Nuestra Revista</h2>
+        <form id="formSuscripcion" class="p-4 rounded">
+            <form id="formSuscripcion" class="p-4 rounded" method="POST" action="guardarSuscripcion.php">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="dni" class="form-label">DNI</label>
+                    <input type="text" id="dni" name="dni" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Suscribirse</button>
+            </form>
+    </section>
     </div>
 
     <footer class="p-3">
@@ -164,88 +322,193 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.getElementById('formSuscripcion').addEventListener('submit', async (e) => {
-    e.preventDefault();
 
-    // Capturar datos del formulario
-    const nombre = document.getElementById('nombre').value;
-    const dni = document.getElementById('dni').value;
-    const email = document.getElementById('email').value;
-
-    const datos = { nombre, dni, email };
-
-    // URL de tu MockAPI
-    const apiURL = 'https://6737db304eb22e24fca64f87.mockapi.io/subscripciones/subscripcion';
-
-    try {
-        const response = await fetch(apiURL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(datos)
-        });
-
-        if (response.ok) {
-            alert('¡Gracias por suscribirte! Tus datos han sido guardados.');
-            document.getElementById('formSuscripcion').reset(); // Limpiar el formulario
-        } else {
-            alert('Hubo un problema al guardar tus datos.');
-        }
-    } catch (error) {
-        console.error('Error al guardar datos en MockAPI:', error);
-        alert('No se pudo completar la suscripción.');
-    }
-});
-
+        // Inicializar el mapa globalmente
         const map = L.map('map').setView([0, 0], 2);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
+        // Función para mostrar el mapa y las atracciones
         async function mostrarMapa(countryCode) {
-    const countryInfoUrl = `https://restcountries.com/v3.1/alpha/${countryCode}`;
-    try {
-        const response = await fetch(countryInfoUrl);
-        const data = await response.json();
-        const country = data[0];
-        const coords = country.latlng;
+            const countryInfoUrl = `https://restcountries.com/v3.1/alpha/${countryCode}`;
+            try {
+                const response = await fetch(countryInfoUrl);
+                const data = await response.json();
+                const country = data[0];
+                const coords = country.latlng;
 
-        // Hacer visible el contenedor del mapa
-        const mapaContainer = document.getElementById('mapaContainer');
-        mapaContainer.classList.remove('d-none');
+                // Mostrar el contenedor del mapa
+                const mapaContainer = document.getElementById('mapaContainer');
+                mapaContainer.classList.remove('d-none');
 
-        // Actualizar vista del mapa
-        map.setView(coords, 5);
+                // Desplazarse al mapa
+                window.scrollTo({
+                    top: mapaContainer.offsetTop - 50,
+                    behavior: 'smooth'
+                });
 
-        // Redibujar el mapa para ajustar las dimensiones
-        setTimeout(() => {
-            map.invalidateSize();
-        }, 200);
+                // Actualizar el mapa
+                map.setView(coords, 5);
+                setTimeout(() => map.invalidateSize(), 200);
 
-        // Agregar atracciones turísticas
-        const atraccionesList = document.getElementById('atraccionesList');
-        atraccionesList.innerHTML = '';
-        const atracciones = [
-            { nombre: 'Atracción 1', coords: [coords[0] + 0.1, coords[1] + 0.1] },
-            { nombre: 'Atracción 2', coords: [coords[0] + 0.2, coords[1] - 0.1] },
-            { nombre: 'Atracción 3', coords: [coords[0] - 0.1, coords[1] + 0.2] }
-        ];
-        atracciones.forEach((atraccion) => {
-            const li = document.createElement('li');
-            li.innerHTML = `<a href="#" onclick="centrarMapa([${atraccion.coords}])">${atraccion.nombre}</a>`;
-            atraccionesList.appendChild(li);
-            L.marker(atraccion.coords).addTo(map).bindPopup(atraccion.nombre);
-        });
-    } catch (error) {
-        console.error('Error al cargar datos del país:', error);
-    }
-}
+                // Generar tarjetas de atracciones
+                const atraccionesList = document.getElementById('atraccionesList');
+                atraccionesList.innerHTML = ''; // Limpiar atracciones previas
+                const atracciones = [
+                    { nombre: 'Atracción 1', coords: [coords[0] + 0.1, coords[1] + 0.1], img: 'https://via.placeholder.com/150' },
+                    { nombre: 'Atracción 2', coords: [coords[0] + 0.2, coords[1] - 0.1], img: 'https://via.placeholder.com/150' },
+                    { nombre: 'Atracción 3', coords: [coords[0] - 0.1, coords[1] + 0.2], img: 'https://via.placeholder.com/150' }
+                ];
 
+                atracciones.forEach((atraccion) => {
+                    const card = document.createElement('div');
+                    card.className = 'card-atraccion p-3 mb-4';
 
+                    card.innerHTML = `
+                    <img src="${atraccion.img}" alt="${atraccion.nombre}" class="img-fluid rounded">
+                    <h5 class="card-title mt-3">${atraccion.nombre}</h5>
+                    <button class="btn btn-primary" onclick="centrarMapa([${atraccion.coords}])">Ver en Mapa</button>
+                `;
+
+                    atraccionesList.appendChild(card);
+
+                    // Añadir marcador al mapa
+                    L.marker(atraccion.coords).addTo(map).bindPopup(atraccion.nombre);
+                });
+            } catch (error) {
+                console.error('Error al cargar datos del país:', error);
+            }
+        }
+
+        // Función para centrar el mapa en una coordenada específica
         function centrarMapa(coords) {
             map.setView(coords, 15);
         }
 
+        // Desplazarse automáticamente al mapa cuando se haga clic en un botón de atracción
+        document.addEventListener('DOMContentLoaded', () => {
+            const atraccionButtons = document.querySelectorAll('.card-atraccion .btn-primary');
+            atraccionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const mapa = document.querySelector('#mapaContainer');
+                    if (mapa) {
+                        window.scrollTo({
+                            top: mapa.offsetTop - 50,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Manejar el envío del formulario de suscripción
+        document.getElementById('formSuscripcion').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Capturar datos del formulario
+            const nombre = document.getElementById('nombre').value;
+            const dni = document.getElementById('dni').value;
+            const email = document.getElementById('email').value;
+
+            const datos = { nombre, dni, email };
+
+            // URL de MockAPI
+            const apiURL = 'https://6737db304eb22e24fca64f87.mockapi.io/subscripciones/subscripcion';
+
+            try {
+                const response = await fetch(apiURL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(datos)
+                });
+
+                if (response.ok) {
+                    alert('¡Gracias por suscribirte! Tus datos han sido guardados.');
+                    document.getElementById('formSuscripcion').reset(); // Limpiar el formulario
+                } else {
+                    alert('Hubo un problema al guardar tus datos.');
+                }
+            } catch (error) {
+                console.error('Error al guardar datos en MockAPI:', error);
+                alert('No se pudo completar la suscripción.');
+            }
+        });
+
+        const apiKey = '6d63ce51abfeddedb02f3ba696b3b918';
+
+        // Función para obtener la información del país usando CountryLayer
+        async function obtenerInfoPais(countryCode) {
+            const url = `https://api.countrylayer.com/v2/alpha/${countryCode}?access_key=${apiKey}`;
+            try {
+                const response = await fetch(url);
+                const countryData = await response.json();
+                return {
+                    population: countryData.population,
+                    currency: countryData.currencies ? countryData.currencies[0].name : 'Desconocida'
+                };
+            } catch (error) {
+                console.error('Error al obtener información del país:', error);
+                return { population: 'Desconocida', currency: 'Desconocida' };
+            }
+        }
+
+        // Función para agregar la información sobre la bandera
+        // Función para agregar la información sobre la bandera y otros datos del país
+        async function agregarInformacionPais(countryCode) {
+            const info = await obtenerInfoPais(countryCode);
+            const countryElement = document.querySelector(`#country-${countryCode}`);
+
+            // Acceder a los elementos de la información del país dentro de la tarjeta
+            const populationElement = countryElement.querySelector('.country-population');
+            const currencyElement = countryElement.querySelector('.country-currency');
+
+            // Llenar la información de población y moneda
+            populationElement.textContent = `Población: ${info.population}`;
+            currencyElement.textContent = `Moneda: ${info.currency}`;
+        }
+
+
+        // Función para mostrar las banderas con el nombre de los países
+        async function mostrarBanderasYNombres(paises) {
+            const contenedorPaises = document.getElementById('paises-container');
+            contenedorPaises.innerHTML = ''; // Limpiar el contenedor de países
+
+            for (let pais of paises) {
+                // Crear el elemento de la tarjeta de país
+                const paisCard = document.createElement('div');
+                paisCard.className = 'col-md-4 pais-card';
+                paisCard.id = `country-${pais.code}`;  // Asignar un ID único a cada país para poder seleccionarlo
+
+                paisCard.innerHTML = `
+            <img src="${pais.flag}" class="flag-image" alt="${pais.name}">
+            <h5 class="country-name">${pais.name}</h5>
+            <button class="btn btn-primary" onclick="mostrarMapa('${pais.code}')">Ver Mapa y Atracciones</button>
+        `;
+
+                // Agregar la tarjeta al contenedor
+                contenedorPaises.appendChild(paisCard);
+
+                // Llamar a la función para agregar población y moneda
+                await agregarInformacionPais(pais.code);
+            }
+        }
+
+
+        [
+            { name: 'Espana', code: 'ES' },
+            { name: 'Francia', code: 'FR' },
+            { name: 'Italia', code: 'IT' }
+        ];
+
+
+        mostrarBanderasYNombres(paises);
+
+
+    </script>
+
 
     </script>
 </body>
+
 </html>
