@@ -39,32 +39,37 @@
         h3 {
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
-            color: #f0f0f0;
+            color: white;
         }
 
         /* Tarjetas de países */
         .pais-card {
-            position: relative;
-            width: 150px;
-            margin: 10px;
+            position: center;
+            width: 400px;
+            margin: 20px;
             text-align: center;
             font-size: 18px;
+            min-width: 400px;
             /* Tamaño de fuente ajustado */
+            padding-top: 15px;
+            padding-bottom: 15px;
+
         }
 
         .flag-image {
-            width: 100%;
-
-            .pais-card:hover {
-                transform: scale(1.05);
-                /* Aumenta ligeramente el tamaño de la tarjeta */
-                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-                /* Sombra más intensa */
-                transition: transform 0.3s, box-shadow 0.3s;
-            }
-
+            max-width: 80%;
             height: auto;
             border-radius: 5px;
+        }
+
+
+        .pais-card:hover {
+
+            transform: scale(1.05);
+            /* Aumenta ligeramente el tamaño de la tarjeta */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            /* Sombra más intensa */
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .country-name {
@@ -73,19 +78,32 @@
             margin-top: 10px;
         }
 
+        .card {
+            position: relative;
+            /* Asegura que .country-info sea relativo a la tarjeta */
+
+        }
+
         .country-info {
-            position: absolute;
-            top: 40px;
-            right: 20px;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
+            position: static;
+            /* Cambiar a estático si no necesitas absoluto */
+            margin-top: 10px;
+            text-align: center;
+            /*background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro para mejor visibilidad */
             padding: 5px;
             border-radius: 5px;
+            color: white;
+            top: 40px;
+            right: 20px;
         }
+
+
 
         .country-population,
         .country-currency {
-            font-size: 0.9em;
+            font-size: 14px;
+            color: white;
+            margin: 5px 0;
         }
 
 
@@ -225,6 +243,10 @@
             background-color: #555555;
             /* Efecto hover consistente */
         }
+
+        .col-md-4 {
+            max-width: 500px;
+        }
     </style>
 </head>
 
@@ -234,62 +256,54 @@
         <p>Haz clic en un país para descubrir sus atracciones turísticas</p>
     </header>
     <div class="container">
-        <div id="paises-container">
-            <div class="row g-4">
-                <!-- Cuadros de países -->
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="https://flagcdn.com/w320/es.png" class="card-img-top" alt="España">
-
-                        <div class="card-body text-center">
-
-                            <h5 class="card-title">España</h5>
-
-                            <div class="country-info">
-                                <p class="country-population"></p>
-                                <p class="country-currency"></p>
-                            </div>
-                            <button class="btn btn-primary" onclick="mostrarMapa('ES')">Ver Mapa y Atracciones</button>
-
-
+        <div id="paises-container" class="row row-cols-1 row-cols-md-3 g-4">
+            <!-- España -->
+            <div class="col">
+                <div class="card" data-country-code="ES">
+                    <img src="https://flagcdn.com/w320/es.png" class="card-img-top" alt="España">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">España</h5>
+                        <div class="country-info">
+                            <p class="country-population"></p>
+                            <p class="country-currency"></p>
                         </div>
+                        <button class="btn btn-primary" onclick="mostrarMapa('ES')">Ver Mapa y Atracciones</button>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="https://flagcdn.com/w320/fr.png" class="card-img-top" alt="Francia">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Francia</h5>
-                            <button class="btn btn-primary" onclick="mostrarMapa('FR')"
-                                aria-label="Ver mapa y atracciones turísticas de Francia">Ver Mapa y
-                                Atracciones</button>
-
-                        </div>
+            </div>
+            <!-- Francia -->
+            <div class="col">
+                <div class="card" data-country-code="FR">
+                    <img src="https://flagcdn.com/w320/fr.png" class="card-img-top" alt="Francia">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Francia</h5>
+                        <button class="btn btn-primary" onclick="mostrarMapa('FR')">Ver Mapa y Atracciones</button>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="https://flagcdn.com/w320/it.png" class="card-img-top" alt="Italia">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Italia</h5>
-                            <button class="btn btn-primary" onclick="mostrarMapa('IT')"
-                                aria-label="Ver mapa y atracciones turísticas de Italia">Ver Mapa y Atracciones</button>
-
-                        </div>
+            </div>
+            <!-- Italia -->
+            <div class="col">
+                <div class="card" data-country-code="IT">
+                    <img src="https://flagcdn.com/w320/it.png" class="card-img-top" alt="Italia">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Italia</h5>
+                        <button class="btn btn-primary" onclick="mostrarMapa('IT')">Ver Mapa y Atracciones</button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="my-5">
-            <!-- Mapa y atracciones -->
-            <div id="mapaContainer" class="d-none">
-                <h2 class="text-center">Mapa Interactivo</h2>
-                <div id="map" class="map-container mb-4"></div>
-                <h3 class="text-center">Atracciones Turísticas</h3>
-                <div id="atraccionesList" class="row g-4"></div> <!-- Contenedor para tarjetas -->
-            </div>
+
+    <div class="my-5">
+        <!-- Mapa y atracciones -->
+        <div id="mapaContainer" class="d-none">
+            <h2 class="text-center">Mapa Interactivo</h2>
+            <div id="map" class="map-container mb-4"></div>
+            <h3 class="text-center">Atracciones Turísticas</h3>
+            <div id="atraccionesList" class="row g-4"></div> <!-- Contenedor para tarjetas -->
         </div>
+    </div>
     </div>
 
 
@@ -435,77 +449,96 @@
             }
         });
 
-        const apiKey = '6d63ce51abfeddedb02f3ba696b3b918';
 
-        // Función para obtener la información del país usando CountryLayer
+
+
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const tarjetas = document.querySelectorAll('.card');
+
+            for (const tarjeta of tarjetas) {
+                const countryCode = tarjeta.getAttribute('data-country-code');
+                if (countryCode) {
+                    const countryInfo = await obtenerInfoPais(countryCode);
+                    if (countryInfo) {
+                        const infoDiv = tarjeta.querySelector('.country-info');
+                        if (infoDiv) {
+                            infoDiv.querySelector('.country-population').textContent = `Población: ${countryInfo.population}`;
+                            infoDiv.querySelector('.country-currency').textContent = `Moneda: ${countryInfo.currency}`;
+                        }
+                    }
+                }
+            }
+        });
+
         async function obtenerInfoPais(countryCode) {
-            const url = `https://api.countrylayer.com/v2/alpha/${countryCode}?access_key=${apiKey}`;
+            const apiUrl = `https://restcountries.com/v3.1/alpha/${countryCode}`;
             try {
-                const response = await fetch(url);
-                const countryData = await response.json();
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                const country = data[0];
                 return {
-                    population: countryData.population,
-                    currency: countryData.currencies ? countryData.currencies[0].name : 'Desconocida'
+                    population: country.population.toLocaleString('es-ES'),
+                    currency: Object.values(country.currencies)[0].name
                 };
             } catch (error) {
-                console.error('Error al obtener información del país:', error);
-                return { population: 'Desconocida', currency: 'Desconocida' };
+                console.error(`Error al obtener datos del país (${countryCode}):`, error);
+                return null;
             }
         }
 
-        // Función para agregar la información sobre la bandera
-        // Función para agregar la información sobre la bandera y otros datos del país
+
+
+
+
         async function agregarInformacionPais(countryCode) {
             const info = await obtenerInfoPais(countryCode);
-            const countryElement = document.querySelector(`#country-${countryCode}`);
+            const countryElement = document.querySelector(`[data-country-code="${countryCode}"]`);
 
-            // Acceder a los elementos de la información del país dentro de la tarjeta
-            const populationElement = countryElement.querySelector('.country-population');
-            const currencyElement = countryElement.querySelector('.country-currency');
+            if (countryElement) {
+                const populationElement = countryElement.querySelector('.country-population');
+                const currencyElement = countryElement.querySelector('.country-currency');
 
-            // Llenar la información de población y moneda
-            populationElement.textContent = `Población: ${info.population}`;
-            currencyElement.textContent = `Moneda: ${info.currency}`;
+                populationElement.textContent = `Población: ${info.population}`;
+                currencyElement.textContent = `Moneda: ${info.currency}`;
+            } else {
+                console.warn(`Elemento no encontrado para el país con código: ${countryCode}`);
+            }
         }
 
-
-        // Función para mostrar las banderas con el nombre de los países
         async function mostrarBanderasYNombres(paises) {
             const contenedorPaises = document.getElementById('paises-container');
-            contenedorPaises.innerHTML = ''; // Limpiar el contenedor de países
+            contenedorPaises.innerHTML = '';
 
             for (let pais of paises) {
-                // Crear el elemento de la tarjeta de país
                 const paisCard = document.createElement('div');
                 paisCard.className = 'col-md-4 pais-card';
-                paisCard.id = `country-${pais.code}`;  // Asignar un ID único a cada país para poder seleccionarlo
+                paisCard.setAttribute('data-country-code', pais.code);
 
                 paisCard.innerHTML = `
-            <img src="${pais.flag}" class="flag-image" alt="${pais.name}">
+            <img src="https://flagcdn.com/w320/${pais.code.toLowerCase()}.png" class="flag-image" alt="${pais.name}">
             <h5 class="country-name">${pais.name}</h5>
+            <div class="country-info">
+                <p class="country-population">Población: Cargando...</p>
+                <p class="country-currency">Moneda: Cargando...</p>
+            </div>
             <button class="btn btn-primary" onclick="mostrarMapa('${pais.code}')">Ver Mapa y Atracciones</button>
         `;
 
-                // Agregar la tarjeta al contenedor
                 contenedorPaises.appendChild(paisCard);
-
-                // Llamar a la función para agregar población y moneda
                 await agregarInformacionPais(pais.code);
             }
         }
 
-
-        [
-            { name: 'Espana', code: 'ES' },
+        const paises = [
+            { name: 'España', code: 'ES' },
             { name: 'Francia', code: 'FR' },
-            { name: 'Italia', code: 'IT' }
+            { name: 'Italia', code: 'IT' },
         ];
 
-
-        mostrarBanderasYNombres(paises);
-
-
-    </script>
+        window.onload = () => {
+            mostrarBanderasYNombres(paises);
+        };
 
 
     </script>
