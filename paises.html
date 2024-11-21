@@ -109,6 +109,7 @@
         .card img {
             height: 150px;
             object-fit: cover;
+            visibility: hidden;
         }
 
         .card-title {
@@ -257,37 +258,37 @@
     </header>
     <div class="container">
         <div id="paises-container" class="row row-cols-1 row-cols-md-3 g-4">
-            <!-- España -->
+            <!-- Tailandia -->
             <div class="col">
-                <div class="card" data-country-code="ES">
-                    <img src="https://flagcdn.com/w320/es.png" class="card-img-top" alt="España">
+                <div class="card" data-country-code="TH">
+                    <img src="https://flagcdn.com/w320/mv.png" class="card-img-top" alt="Tailandia">
                     <div class="card-body text-center">
-                        <h5 class="card-title">España</h5>
+                        <h5 class="card-title">Tailandia</h5>
                         <div class="country-info">
                             <p class="country-population"></p>
                             <p class="country-currency"></p>
                         </div>
-                        <button class="btn btn-primary" onclick="mostrarMapa('ES')">Ver Mapa y Atracciones</button>
+                        <button class="btn btn-primary" onclick="mostrarMapa('TH')">Ver Mapa y Atracciones</button>
                     </div>
                 </div>
             </div>
-            <!-- Francia -->
+            <!-- Grecia -->
             <div class="col">
-                <div class="card" data-country-code="FR">
-                    <img src="https://flagcdn.com/w320/fr.png" class="card-img-top" alt="Francia">
+                <div class="card" data-country-code="GR">
+                    <img src="https://flagcdn.com/w320/fr.png" class="card-img-top" alt="Grecia">
                     <div class="card-body text-center">
-                        <h5 class="card-title">Francia</h5>
-                        <button class="btn btn-primary" onclick="mostrarMapa('FR')">Ver Mapa y Atracciones</button>
+                        <h5 class="card-title">Grecia</h5>
+                        <button class="btn btn-primary" onclick="mostrarMapa('GR')">Ver Mapa y Atracciones</button>
                     </div>
                 </div>
             </div>
-            <!-- Italia -->
+            <!-- Egipto -->
             <div class="col">
-                <div class="card" data-country-code="IT">
-                    <img src="https://flagcdn.com/w320/it.png" class="card-img-top" alt="Italia">
+                <div class="card" data-country-code="EG">
+                    <img src="https://flagcdn.com/w320/it.png" class="card-img-top" alt="Egipto">
                     <div class="card-body text-center">
-                        <h5 class="card-title">Italia</h5>
-                        <button class="btn btn-primary" onclick="mostrarMapa('IT')">Ver Mapa y Atracciones</button>
+                        <h5 class="card-title">Egipto</h5>
+                        <button class="btn btn-primary" onclick="mostrarMapa('EG')">Ver Mapa y Atracciones</button>
                     </div>
                 </div>
             </div>
@@ -367,13 +368,47 @@
                 setTimeout(() => map.invalidateSize(), 200);
 
                 // Generar tarjetas de atracciones
+                // Limpiar atracciones previas
                 const atraccionesList = document.getElementById('atraccionesList');
-                atraccionesList.innerHTML = ''; // Limpiar atracciones previas
-                const atracciones = [
-                    { nombre: 'Atracción 1', coords: [coords[0] + 0.1, coords[1] + 0.1], img: 'https://via.placeholder.com/150' },
-                    { nombre: 'Atracción 2', coords: [coords[0] + 0.2, coords[1] - 0.1], img: 'https://via.placeholder.com/150' },
-                    { nombre: 'Atracción 3', coords: [coords[0] - 0.1, coords[1] + 0.2], img: 'https://via.placeholder.com/150' }
-                ];
+                atraccionesList.innerHTML = ''; 
+
+                // ATRACCIONES DE CADA PAÍS
+                let atracciones = [];
+
+                // Añadir atracciones de Tailandia
+                if (countryCode === 'TH') {  // 'TH' es el código de Tailandia
+                    atracciones = [
+                        { nombre: 'Parque Nacional Khao Sok', coords: [8.8170, 98.4103], img: [
+                'https://i.ibb.co/5rT931M/1.jpg', // Asegúrate de usar el enlace directo
+                'https://i.ibb.co/4PZdrcB/2.jpg',
+                'https://i.ibb.co/8gjdzLL/3.jpg',
+                'https://i.ibb.co/DMCCxnW/4.jpg',
+                'https://i.ibb.co/WPYMDMC/5.jpg',
+                'https://i.ibb.co/WktqgZ9/6.jpg'
+            ] },
+                        { nombre: 'Islas Phi Phi', coords: [7.7425, 98.7749], img: 'https://via.placeholder.com/150' },
+                        { nombre: 'Templo del Buda Esmeralda', coords: [13.7494, 100.4920], img: 'https://via.placeholder.com/150' }
+                    ];
+                }
+
+                // Añadir atracciones de Grecia
+                if (countryCode === 'GR') {  // 'GR' es el código de Grecia
+                    atracciones = [
+                        { nombre: 'Acrópolis de Atenas', coords: [37.9715, 23.7267], img: 'https://via.placeholder.com/150' },
+                        { nombre: 'Santorini', coords: [36.4612, 25.3653], img: 'https://via.placeholder.com/150' },
+                        { nombre: 'Monasterios de Meteora', coords: [39.7214, 21.6297], img: 'https://via.placeholder.com/150' }
+                    ];
+                }
+
+                // Añadir atracciones de Egipto
+                if (countryCode === 'EG') {  // 'EG' es el código de Egipto
+                    atracciones = [
+                        { nombre: 'Templo de Karnak', coords: [25.7184, 32.6573], img: 'https://via.placeholder.com/150' },
+                        { nombre: 'Visitar la Reserva Vallée de Mai', coords: [-4.3370, 55.7364], img: 'https://via.placeholder.com/150' },
+                        { nombre: 'Navegar entre islas', coords: [-4.3580, 55.8265], img: 'https://via.placeholder.com/150' }
+                    ];
+                }
+
 
                 atracciones.forEach((atraccion) => {
                     const card = document.createElement('div');
@@ -531,9 +566,9 @@
         }
 
         const paises = [
-            { name: 'España', code: 'ES' },
-            { name: 'Francia', code: 'FR' },
-            { name: 'Italia', code: 'IT' },
+            { name: 'Tailandia', code: 'TH' },
+            { name: 'Grecia', code: 'GR' },
+            { name: 'Egipto', code: 'EG' },
         ];
 
         window.onload = () => {
