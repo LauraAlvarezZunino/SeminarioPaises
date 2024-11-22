@@ -425,7 +425,19 @@
 
         // Función para centrar el mapa en una coordenada específica
         function centrarMapa(coords) {
+         const mapaContainer = document.getElementById('mapaContainer');
+         if(mapaContainer.classList.contains('d-none')){
+            mapaContainer.classList.remove('d-none');
+         }
+        //desplazarse al mapa
+        window.scrollTo({
+            top: mapaContainer.offsetTop -50,
+            behavior:'smooth'
+        }); 
+        //centrar mapa
             map.setView(coords, 15);
+            setTimeout(() =>
+            map.invalidateSize(),200); //se redibuja el mapa
         }
 
         // Desplazarse automáticamente al mapa cuando se haga clic en un botón de atracción
