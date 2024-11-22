@@ -1,0 +1,205 @@
+/* Fondo general con mapamundi */
+body {
+background: url('https://iili.io/2ASCaAG.jpg') no-repeat center center fixed;
+background-size: cover;
+color: white;
+font-family: 'Roboto', sans-serif;
+background-attachment: fixed;
+background-position: center;
+}
+
+/* Ajuste para dispositivos móviles */
+@media (max-width: 768px) {
+body {
+ background-attachment: scroll;
+}
+}
+
+/* Sombra para que los elementos sean más legibles */
+header,
+.card,
+#formSuscripcion,
+footer {
+background-color: #1f1f1f; /* Fallback */
+background-color: rgba(31, 31, 31, 0.9);
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+border-radius: 10px;
+}
+
+/* Encabezados con tipografía destacada */
+h1,
+h2,
+h3 {
+font-family: 'Poppins', sans-serif;
+font-weight: 700;
+color: white;
+}
+
+/* Tarjetas de países */
+.pais-card {
+position: center;
+width: 400px;
+margin: 20px;
+text-align: center;
+font-size: 18px;
+min-width: 400px;
+padding-top: 15px;
+padding-bottom: 15px;
+border-radius: 10px;
+}
+
+.flag-image {
+max-width: 80%;
+height: auto;
+border-radius: 5px;    
+margin-bottom: 15px;
+}
+
+.pais-card:hover {
+-webkit-transform: scale(1.05);
+transform: scale(1.05);
+-webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Información del país */
+.country-info {
+margin-top: 10px;
+text-align: center;
+padding: 5px;
+border-radius: 5px;
+color: white;
+}
+
+.country-population,
+.country-currency {
+font-size: 14px;
+color: white;
+margin: 5px 0;
+}
+
+.card {
+position: relative;
+}
+
+.card img {
+height: 150px;
+object-fit: cover;
+visibility: hidden;
+}
+
+.card-title {
+font-size: 1.2rem;
+color: #e0e0e0;
+}
+
+.btn-primary {
+background-color: #333333;
+border: none;
+color: white;
+}
+
+.btn-primary:hover {
+background-color: #555555;
+}
+
+/* Ajustes para móviles */
+@media (max-width: 480px) {
+.pais-card {
+ width: 100%;
+ min-width: unset;
+ margin: 10px 0;
+}
+.flag-image {
+ max-width: 100%;
+}
+h1 {
+ font-size: 1.5rem;
+}
+}
+
+/* Mapa */
+.map-container {
+height: 400px;
+border: 2px solid #333333;
+border-radius: 10px;
+width: 100%;
+margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+.map-container {
+ height: 300px;
+}
+}
+
+/* Lista de atracciones */
+#atraccionesList {
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+justify-content: center;
+padding: 0;
+list-style: none;
+margin: 10px 0;
+}
+
+.card-atraccion {
+flex: 1 1 calc(30% - 20px);
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+border-radius: 10px;
+overflow: hidden;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+transition: transform 0.3s, box-shadow 0.3s;
+max-width: 300px;
+}
+
+.card-atraccion img {
+width: 100%;
+height: 180px;
+object-fit: cover;
+border-bottom: 2px solid #444;
+}
+
+.card-atraccion:hover {
+-webkit-transform: scale(1.05);
+transform: scale(1.05);
+-webkit-box-shadow: 0 8px 12px rgba(0, 0, 0, 0.7);
+box-shadow: 0 8px 12px rgba(0, 0, 0, 0.7);
+}
+
+.card-atraccion .card-title {
+margin-top: 10px;
+margin-bottom: 10px;
+font-size: 1.2rem;
+font-weight: bold;
+color: #e0e0e0;
+}
+
+.card-atraccion .btn {
+margin-top: auto;
+width: 80%;
+}
+
+.card-atraccion .btn-primary {
+background-color: #333333;
+border: none;
+color: white;
+transition: background-color 0.3s;
+}
+
+.card-atraccion .btn-primary:hover {
+background-color: #555555;
+}
+
+footer {
+margin-top: 20px;
+text-align: center;
+color: #808080;
+}
+
+
