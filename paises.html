@@ -4,255 +4,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Viajes y Turismo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
     <style>
-        /* Fondo general con mapamundi */
-        body {
-            background: url('https://iili.io/2ASCaAG.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            font-family: 'Roboto', sans-serif;
-            background-attachment: fixed;
-            /* La imagen permanece fija al hacer scroll */
-            background-position: center;
-            /* Centra la imagen */
+       /* Fondo general con mapamundi */
+body {
+    background: url('https://iili.io/2ASCaAG.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+/* Ajuste para dispositivos móviles */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+    }
+}
+
+/* Sombra para que los elementos sean más legibles */
+header,
+.card,
+#formSuscripcion,
+footer {
+    background-color: #1f1f1f; /* Fallback */
+    background-color: rgba(31, 31, 31, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+/* Encabezados con tipografía destacada */
+h1,
+h2,
+h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: white;
+}
+
+/* Tarjetas de países */
+.pais-card {
+    position: center;
+    width: 400px;
+    margin: 20px;
+    text-align: center;
+    font-size: 18px;
+    min-width: 400px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 10px;
+}
+
+.flag-image {
+    max-width: 80%;
+    height: auto;
+    border-radius: 5px;    
+    margin-bottom: 15px;
+}
+
+.pais-card:hover {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Información del país */
+.country-info {
+    margin-top: 10px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+}
+
+.country-population,
+.country-currency {
+    font-size: 14px;
+    color: white;
+    margin: 5px 0;
+}
+
+.card {
+    position: relative;
+}
+
+.card img {
+    height: 150px;
+    object-fit: cover;
+    visibility: hidden;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+}
+
+.btn-primary {
+    background-color: #333333;
+    border: none;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #555555;
+}
+
+/* Ajustes para móviles */
+@media (max-width: 480px) {
+    .pais-card {
+        width: 100%;
+        min-width: unset;
+        margin: 10px 0;
+    }
+    .flag-image {
+        max-width: 100%;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Mapa */
+.map-container {
+    height: 400px;
+    border: 2px solid #333333;
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .map-container {
+        height: 300px;
+    }
+}
+
+/* Lista de atracciones */
+#atraccionesList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+    margin: 10px 0;
+}
+
+.card-atraccion {
+    flex: 1 1 calc(30% - 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+    max-width: 300px;
+}
+
+.card-atraccion img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 2px solid #444;
+}
+
+.card-atraccion:hover {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    -webkit-box-shadow: 0 8px 12px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.7);
+}
+
+.card-atraccion .card-title {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #e0e0e0;
+}
+
+.card-atraccion .btn {
+    margin-top: auto;
+    width: 80%;
+}
+
+.card-atraccion .btn-primary {
+    background-color: #333333;
+    border: none;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.card-atraccion .btn-primary:hover {
+    background-color: #555555;
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+    color: #808080;
+}
 
 
-        }
-         /* Sombra para que los elementos sean más legibles */
-        header,
-        .card,
-        #formSuscripcion,
-        footer {
-            background-color: rgba(31, 31, 31, 0.9);
-            /* Fondo oscuro translúcido */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-        }
-
-        /* Encabezados con tipografía destacada */
-        h1,
-        h2,
-        h3 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            color: white;
-        }
-
-        /* Tarjetas de países */
-        .pais-card {
-            position: center;
-            width: 400px;
-            margin: 20px;
-            text-align: center;
-            font-size: 18px;
-            min-width: 400px;
-            /* Tamaño de fuente ajustado */
-            padding-top: 15px;
-            padding-bottom: 15px;
-            border-radius: 10px;
-        }
-
-        .flag-image {
-            max-width: 80%;
-            height: auto;
-            border-radius: 5px;
-        }
-
-
-        .pais-card:hover {
-
-            transform: scale(1.05);
-            /* Aumenta ligeramente el tamaño de la tarjeta */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            /* Sombra más intensa */
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .country-name {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        .card {
-            position: relative;
-            /* Asegura que .country-info sea relativo a la tarjeta */
-
-        }
-
-        .country-info {
-            position: static;
-            /* Cambiar a estático si no necesitas absoluto */
-            margin-top: 10px;
-            text-align: center;
-            /*background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro para mejor visibilidad */
-            padding: 5px;
-            border-radius: 5px;
-            color: white;
-            top: 40px;
-            right: 20px;
-        }
-
-
-
-        .country-population,
-        .country-currency {
-            font-size: 14px;
-            color: white;
-            margin: 5px 0;
-        }
-
-
-        .card img {
-            height: 150px;
-            object-fit: cover;
-            visibility: hidden;
-        }
-
-        .card-title {
-            font-size: 1.2rem;
-            color: #e0e0e0;
-        }
-
-        .btn-primary {
-            background-color: #333333;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background-color: #555555;
-        }
-
-        /* Mapa */
-        .map-container {
-            height: 400px;
-            border: 2px solid #333333;
-            border-radius: 10px;
-            width: 100%;
-            /* Ancho completo */
-            margin-bottom: 500x;
-            /* Ajusta este valor según sea necesario */
-        }
-
-
-
-        /* Lista de atracciones */
-        ul {
-            padding-left: 0;
-        }
-
-        ul li {
-            list-style: none;
-            margin-bottom: 10px;
-        }
-
-        ul li a {
-            color: #b0b0b0;
-            text-decoration: none;
-        }
-
-        ul li a:hover {
-            color: #ffffff;
-        }
-
-        footer {
-            margin-top: 20px;
-            text-align: center;
-            color: #808080;
-        }
-
-        #atraccionesList {
-            display: flex;
-            /* Hacer que las tarjetas se alineen horizontalmente */
-            flex-wrap: wrap;
-            /* Permitir que se envuelvan si no caben en una fila */
-            gap: 20px;
-            /* Espaciado entre las tarjetas */
-            justify-content: center;
-            /* Centrar las tarjetas en el contenedor */
-            padding: 0;
-            /* Eliminar cualquier padding */
-            list-style: none;
-            /* Quitar puntos de lista */
-            margin: 10px 0;
-            /* Separar el bloque de otras secciones */
-        }
-
-        .card-atraccion {
-            flex: 1 1 calc(30% - 20px);
-            /* Ocupa aproximadamente 30% del ancho del contenedor, restando el gap */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            /* Centrar contenido horizontalmente */
-            text-align: center;
-            /* Centrar texto */
-            /* background-color: rgba(50, 50, 50, 0.8);
-            border: 1px solid #444;*/
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s, box-shadow 0.3s;
-            max-width: 300px;
-            /* Ancho máximo de cada tarjeta */
-        }
-
-        .card-atraccion img {
-            width: 100%;
-            /* Asegura que la imagen cubra el ancho de la tarjeta */
-            height: 180px;
-            /* Altura fija para uniformidad */
-            object-fit: cover;
-            /* Asegura que la imagen se ajuste sin distorsionarse */
-            border-bottom: 2px solid #444;
-            /* Línea divisoria entre imagen y texto */
-        }
-
-        .card-atraccion:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.7);
-        }
-
-        .card-atraccion .card-title {
-            margin-top: 10px;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #e0e0e0;
-        }
-
-        .card-atraccion .btn {
-            margin-top: auto;
-            /* Mantiene el botón en la parte inferior */
-            width: 80%;
-            /* Ajusta el ancho del botón */
-        }
-
-        /* Botón de las tarjetas de atracciones */
-        .card-atraccion .btn-primary {
-            background-color: #333333;
-            /* Igual que los botones de países */
-            border: none;
-            color: white;
-            transition: background-color 0.3s;
-        }
-
-        .card-atraccion .btn-primary:hover {
-            background-color: #555555;
-            /* Efecto hover consistente */
-        }
-        
-        .col-md-4 {
-            max-width: 500px;
-        }
     </style>
 </head>
 
 <body>
-    <header class="py-4 text-center mb-4">
+    <header class="py-4 text-center mb-4" role="banner">
         <h1>Explora el Mundo</h1>
         <p>Haz clic en un país para descubrir sus atracciones turísticas</p>
     </header>
@@ -260,35 +226,31 @@
         <div id="paises-container" class="row row-cols-1 row-cols-md-3 g-4">
             <!-- Tailandia -->
             <div class="col">
-                <div class="card" data-country-code="TH">
-                    <img src="https://flagcdn.com/w320/mv.png" class="card-img-top" alt="Tailandia">
+                <div class="card" data-country-code="TH" role="region" aria-label="Información sobre Tailandia">
+                    <img src="https://flagcdn.com/w320/mv.png" class="card-img-top" alt="Bandera de Tailandia">
                     <div class="card-body text-center">
                         <h5 class="card-title">Tailandia</h5>
-                        <div class="country-info">
-                            <p class="country-population"></p>
-                            <p class="country-currency"></p>
-                        </div>
-                        <button class="btn btn-primary" onclick="mostrarMapa('TH')">Ver Mapa y Atracciones</button>
+                        <button class="btn btn-primary" onclick="mostrarMapa('TH')" aria-label="Ver mapa y atracciones de Tailandia">Ver Mapa y Atracciones</button>
                     </div>
                 </div>
             </div>
             <!-- Grecia -->
             <div class="col">
-                <div class="card" data-country-code="GR">
-                    <img src="https://flagcdn.com/w320/fr.png" class="card-img-top" alt="Grecia">
+                <div class="card" data-country-code="GR" role="region" aria-label="Información sobre Grecia">
+                    <img src="https://flagcdn.com/w320/fr.png" class="card-img-top" alt="Bandera de Grecia">
                     <div class="card-body text-center">
                         <h5 class="card-title">Grecia</h5>
-                        <button class="btn btn-primary" onclick="mostrarMapa('GR')">Ver Mapa y Atracciones</button>
+                        <button class="btn btn-primary" onclick="mostrarMapa('GR')" aria-label="Ver mapa y atracciones de Grecia">Ver Mapa y Atracciones</button>
                     </div>
                 </div>
             </div>
             <!-- Egipto -->
             <div class="col">
-                <div class="card" data-country-code="EG">
-                    <img src="https://flagcdn.com/w320/it.png" class="card-img-top" alt="Egipto">
+                <div class="card" data-country-code="EG" role="region" aria-label="Información sobre Egipto">
+                    <img src="https://flagcdn.com/w320/it.png" class="card-img-top" alt="Bandera de Egipto">
                     <div class="card-body text-center">
                         <h5 class="card-title">Egipto</h5>
-                        <button class="btn btn-primary" onclick="mostrarMapa('EG')">Ver Mapa y Atracciones</button>
+                        <button class="btn btn-primary" onclick="mostrarMapa('EG')" aria-label="Ver mapa y atracciones de Egipto">Ver Mapa y Atracciones</button>
                     </div>
                 </div>
             </div>
@@ -298,9 +260,9 @@
 
     <div class="my-5">
         <!-- Mapa y atracciones -->
-        <div id="mapaContainer" class="d-none">
+        <div id="mapaContainer" class="d-none" aria-live="polite">
             <h2 class="text-center">Mapa Interactivo</h2>
-            <div id="map" class="map-container mb-4"></div>
+            <div id="map" class="map-container mb-4" role="application" aria-label="Mapa interactivo"></div>
             <h3 class="text-center">Atracciones Turísticas</h3>
             <div id="atraccionesList" class="row g-4"></div> <!-- Contenedor para tarjetas -->
         </div>
@@ -312,26 +274,29 @@
     <section>
         <h2 class="text-center">Suscríbete a Nuestra Revista</h2>
         <form id="formSuscripcion" class="p-4 rounded">
-            <form id="formSuscripcion" class="p-4 rounded" method="POST" action="guardarSuscripcion.php">
+            <form id="formSuscripcion" class="p-4 rounded" method="POST" action="guardarSuscripcion.php" role="form" aria-labelledby="formHeader">
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" class="form-control" required>
+                    <input type="text" id="nombre" name="nombre" class="form-control"  required aria-required="true">
                 </div>
                 <div class="mb-3">
                     <label for="dni" class="form-label">DNI</label>
-                    <input type="text" id="dni" name="dni" class="form-control" required>
+                    <input type="text" id="dni" name="dni" class="form-control"  required aria-required="true">
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" id="email" name="email" class="form-control" required>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Suscribirse</button>
+                    <input type="email" id="email" name="email" class="form-control" required aria-required="true">
+                </div>          
+                <button type="submit" class="btn btn-primary w-100" aria-label="Enviar formulario de suscripción">
+                    Suscribirse
+                </button>
             </form>
+            
     </section>
     </div>
 
-    <footer class="p-3">
-        <p>&copy; 2024 - Viajes y Turismo</p>
+    <footer class="p-3" role="contentinfo" aria-label="Información del sitio web">
+        <p>&copy; 2024 - Alvarez Zunino L. - Lombardi M. L.</p>
     </footer>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -437,7 +402,7 @@
         //centrar mapa
             map.setView(coords, 15);
             setTimeout(() =>
-            map.invalidateSize(),200); //se redibuja el mapa
+            map.invalidateSize(),200);//se redibuja el mapa
         }
 
         // Desplazarse automáticamente al mapa cuando se haga clic en un botón de atracción
@@ -526,10 +491,6 @@
                 return null;
             }
         }
-
-
-
-
 
         async function agregarInformacionPais(countryCode) {
             const info = await obtenerInfoPais(countryCode);
