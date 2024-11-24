@@ -234,4 +234,3 @@ const paises = [
 window.onload = () => {
     mostrarBanderasYNombres(paises);
 };
-
