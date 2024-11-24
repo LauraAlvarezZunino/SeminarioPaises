@@ -38,12 +38,16 @@ h3 {
 
 /* Tarjetas de países */
 .pais-card {
-    position: center;
-    width: 400px;
-    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 400px;
+    width: 100%;
+    min-width: 250px;
+    margin: 10px auto;  /* Centrado de las tarjetas y espacio entre ellas */
     text-align: center;
     font-size: 18px;
-    min-width: 400px;
     padding-top: 15px;
     padding-bottom: 15px;
     border-radius: 10px;
@@ -81,7 +85,10 @@ h3 {
 }
 
 .card {
-    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;  /* Centra las tarjetas horizontalmente */
+    gap: 20px;  /* Añade espacio entre las tarjetas */
 }
 
 .card img {
