@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
     <link rel="stylesheet" href="estilos.css">
-   
+
 </head>
 
 <body>
@@ -25,7 +25,8 @@
                     <img src="https://flagcdn.com/w320/th.png" class="card-img-top" alt="Bandera de Tailandia">
                     <div class="card-body text-center">
                         <h5 class="card-title">Tailandia</h5>
-                        <button class="btn btn-primary" onclick="mostrarMapa('TH')" aria-label="Ver mapa y atracciones de Tailandia">Ver Mapa y Atracciones</button>
+                        <button class="btn btn-primary" onclick="mostrarMapa('TH')"
+                            aria-label="Ver mapa y atracciones de Tailandia">Ver Mapa y Atracciones</button>
                     </div>
                 </div>
             </div>
@@ -35,7 +36,8 @@
                     <img src="https://flagcdn.com/w320/gr.png" class="card-img-top" alt="Bandera de Grecia">
                     <div class="card-body text-center">
                         <h5 class="card-title">Grecia</h5>
-                        <button class="btn btn-primary" onclick="mostrarMapa('GR')" aria-label="Ver mapa y atracciones de Grecia">Ver Mapa y Atracciones</button>
+                        <button class="btn btn-primary" onclick="mostrarMapa('GR')"
+                            aria-label="Ver mapa y atracciones de Grecia">Ver Mapa y Atracciones</button>
                     </div>
                 </div>
             </div>
@@ -45,7 +47,8 @@
                     <img src="https://flagcdn.com/w320/eg.png" class="card-img-top" alt="Bandera de Egipto">
                     <div class="card-body text-center">
                         <h5 class="card-title">Egipto</h5>
-                        <button class="btn btn-primary" onclick="mostrarMapa('EG')" aria-label="Ver mapa y atracciones de Egipto">Ver Mapa y Atracciones</button>
+                        <button class="btn btn-primary" onclick="mostrarMapa('EG')"
+                            aria-label="Ver mapa y atracciones de Egipto">Ver Mapa y Atracciones</button>
                     </div>
                 </div>
             </div>
@@ -69,24 +72,25 @@
     <section>
         <h2 class="text-center">Suscríbete a Nuestra Revista</h2>
         <form id="formSuscripcion" class="p-4 rounded">
-            <form id="formSuscripcion" class="p-4 rounded" method="POST" action="guardarSuscripcion.php" role="form" aria-labelledby="formHeader">
+            <form id="formSuscripcion" class="p-4 rounded" method="POST" action="guardarSuscripcion.php" role="form"
+                aria-labelledby="formHeader">
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" class="form-control"  required aria-required="true">
+                    <input type="text" id="nombre" name="nombre" class="form-control" required aria-required="true">
                 </div>
                 <div class="mb-3">
                     <label for="dni" class="form-label">DNI</label>
-                    <input type="text" id="dni" name="dni" class="form-control"  required aria-required="true">
+                    <input type="text" id="dni" name="dni" class="form-control" required aria-required="true">
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" id="email" name="email" class="form-control" required aria-required="true">
-                </div>          
+                </div>
                 <button type="submit" class="btn btn-primary w-100" aria-label="Enviar formulario de suscripción">
                     Suscribirse
                 </button>
             </form>
-            
+
     </section>
     </div>
 
@@ -97,6 +101,7 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="app.js"></script>
-  
+
 </body>
+
 </html>
