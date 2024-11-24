@@ -223,19 +223,16 @@ footer {
     color: #808080;
 }
 
-/* Media query para pantallas pequeñas */
 @media (max-width: 768px) {
     .card-atraccion {
-        flex: 1 1 100%;
-        /* Las tarjetas ocupan el 100% del ancho disponible */
-        max-width: 100%;
-        /* Evita que excedan el ancho del contenedor */
-        min-width: unset;
-        /* Permite que sean más pequeñas si es necesario */
+        flex: 1 1 calc(50% - 20px); /* Cada tarjeta ocupa el 50% del ancho (menos espacio entre ellas) */
+        max-width: calc(50% - 20px); /* Ajusta el tamaño máximo de las tarjetas */
+        margin: 10px; /* Mantén un margen consistente entre las tarjetas */
     }
 
     .card-atraccion img {
-        height: auto;
-        /* Permite que la imagen ajuste su altura proporcionalmente */
+        width: 100%; /* La imagen se ajusta al ancho de la tarjeta */
+        height: auto; /* Mantiene las proporciones originales */
+        object-fit: cover; /* Asegura que las imágenes no se deformen */
     }
 }
