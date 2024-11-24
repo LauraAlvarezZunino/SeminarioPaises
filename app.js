@@ -36,8 +36,7 @@ async function mostrarMapa(countryCode) {
         // ATRACCIONES DE CADA PAÍS
         let atracciones = [];
 
-        // Añadir atracciones de Tailandia
-        if (countryCode === 'TH') {  // 'TH' es el código de Tailandia
+        if (countryCode === 'TH') { 
             atracciones = [
                 { nombre: 'Parque Nacional Khao Sok', coords: [8.8170, 98.4103], img: src = "https://i.ibb.co/NTDXLgJ/3.jpg", alt: "Foto del Parque Nacional Khao Sok" },
                 { nombre: 'Islas Phi Phi', coords: [7.7425, 98.7749], img: src = "https://i.ibb.co/4P7q1s8/1.jpg", alt: "Foto de las Islas Phi Phi" },
@@ -45,8 +44,7 @@ async function mostrarMapa(countryCode) {
             ];
         }
 
-        // Añadir atracciones de Grecia
-        if (countryCode === 'GR') {  // 'GR' es el código de Grecia
+        if (countryCode === 'GR') {  
             atracciones = [
                 { nombre: 'Acrópolis de Atenas', coords: [37.9715, 23.7267], img: src = "https://i.ibb.co/q9NVZ36/2.jpg", alt: "Foto de Acrópolis de Atenas" },
                 { nombre: 'Santorini', coords: [36.4612, 25.3653], img: src = "https://i.ibb.co/jMdzSsw/3.jpg", alt: "Imagen de Santorini" },

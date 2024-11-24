@@ -21,7 +21,7 @@ header,
 #formSuscripcion,
 footer {
     background-color: #1f1f1f;
-    /* Fallback */
+    /* Fallback (alternativa segun navegador)*/
     background-color: rgba(31, 31, 31, 0.9);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
@@ -87,7 +87,7 @@ h3 {
 .card {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;  /* Centra las tarjetas horizontalmente */
+    justify-content: center;  
     gap: 20px;  /* Añade espacio entre las tarjetas */
 }
 
@@ -144,7 +144,6 @@ h3 {
     .map-container {
         height: 300px;
         max-width: 95%;
-        /* Ajusta el ancho máximo en pantallas pequeñas */
     }
 }
 
@@ -156,7 +155,6 @@ h3 {
     gap: 20px;
     /* Espacio entre tarjetas */
     justify-content: center;
-    /* Centra las tarjetas */
     padding: 0;
     list-style: none;
     margin: 10px 0;
@@ -174,7 +172,6 @@ h3 {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s, box-shadow 0.3s;
     max-width: 300px;
-    /* Ancho máximo de la tarjeta */
     min-width: 250px;
     /* Evita que las tarjetas se encojan demasiado */
 }
@@ -227,7 +224,7 @@ footer {
     .card-atraccion {
         flex: 1 1 calc(50% - 20px); /* Cada tarjeta ocupa el 50% del ancho (menos espacio entre ellas) */
         max-width: calc(50% - 20px); /* Ajusta el tamaño máximo de las tarjetas */
-        margin: 10px; /* Mantén un margen consistente entre las tarjetas */
+        margin: 10px; /* margen consistente entre las tarjetas */
     }
 
     .card-atraccion img {
